@@ -8,6 +8,7 @@ class TZ_Init {
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_post_type_realty' ] );
 		add_action( 'init', [ $this, 'register_taxonomy_types_realty' ] );
+		add_action( 'init', [ $this, 'register_post_type_city' ] );
 	}
 
 	/**
@@ -88,6 +89,52 @@ class TZ_Init {
 		);
 
 		register_taxonomy( 'type_realty', array( 'realty' ), $args );
+	}
+
+	/**
+	 * Register new custom post type City
+	 */
+	function register_post_type_city() {
+
+		/**
+		 * Post Type: City.
+		 */
+
+		$labels = array(
+			'name'          => __( 'Cities', 'understrap-child' ),
+			'singular_name' => __( 'City', 'understrap-child' ),
+			'all_items'     => __( 'All Cities', 'understrap-child' ),
+			'add_new'       => __( 'Add New City', 'understrap-child' ),
+			'add_new_item'  => __( 'Add New City', 'understrap-child' ),
+			'edit_item'     => __( 'Edit City', 'understrap-child' ),
+			'new_item'      => __( 'New City', 'understrap-child' ),
+			'view_item'     => __( 'View City', 'understrap-child' ),
+			'view_items'    => __( 'View City', 'understrap-child' ),
+		);
+
+		$args = array(
+			'label'               => '',
+			'labels'              => $labels,
+			'description'         => '',
+			'public'              => true,
+			'publicly_queryable'  => true,
+			'show_ui'             => true,
+			'show_in_rest'        => true,
+			'rest_base'           => null,
+			'has_archive'         => true,
+			'show_in_menu'        => true,
+			'show_in_nav_menus'   => true,
+			'exclude_from_search' => false,
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'hierarchical'        => false,
+			'rewrite'             => true,
+			'query_var'           => true,
+			'menu_icon'           => 'dashicons-location-alt',
+			'supports'            => array( 'title', 'editor', 'thumbnail' ),
+		);
+
+		register_post_type( 'city', $args );
 	}
 
 }
