@@ -7,6 +7,7 @@ class TZ_Init {
 
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_post_type_realty' ] );
+		add_action( 'init', [ $this, 'register_taxonomy_types_realty' ] );
 	}
 
 	/**
@@ -50,9 +51,43 @@ class TZ_Init {
 			'query_var'           => true,
 			'menu_icon'           => 'dashicons-admin-home',
 			'supports'            => array( 'title', 'editor' ),
+			'taxonomies'          => array( 'type_realty' ),
 		);
 
 		register_post_type( 'realty', $args );
+	}
+
+	/**
+	 * Register new custom taxonomy Types Realty
+	 */
+	function register_taxonomy_types_realty() {
+
+		/**
+		 * Taxonomy: Types Realty.
+		 */
+
+		$labels = array(
+			'name'          => __( 'Types Realty', 'understrap-child' ),
+			'singular_name' => __( 'Type realty', 'understrap-child' ),
+		);
+
+		$args = array(
+			'label'              => '',
+			'labels'             => $labels,
+			'public'             => true,
+			'hierarchical'       => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'show_in_nav_menus'  => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'type_realty', 'with_front' => true, ),
+			'show_admin_column'  => false,
+			'show_in_rest'       => false,
+			'rest_base'          => 'type_realty',
+			'show_in_quick_edit' => false,
+		);
+
+		register_taxonomy( 'type_realty', array( 'realty' ), $args );
 	}
 
 }
