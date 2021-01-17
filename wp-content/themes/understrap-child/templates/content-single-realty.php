@@ -67,7 +67,10 @@ defined( 'ABSPATH' ) || exit;
 			echo '<h6>Floor: ' . $floor . '</h6>';
 		}
 		if ( $city ) {
-			echo '<h6>City: ' . $city->name . '</h6>';
+		    printf( '<h6>City: <a href="%s" target="_blank">%s</a></h6>',
+			    get_permalink( $city ),
+			    $city->post_title
+            );
 		}
 		if ( $address ) {
 			echo '<h6>Address: ' . $address . '</h6>';
