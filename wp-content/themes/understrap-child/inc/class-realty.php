@@ -98,6 +98,21 @@ class Realty {
 	}
 
 	/**
+	 * Returns first image or default image
+	 * @return string
+	 */
+	public function getFeaturedImage() {
+		if ( $this->imagesIds && count( $this->imagesIds ) ) {
+			$imageId = array_pop( $this->imagesIds );
+			$image = wp_get_attachment_image( $imageId, 'thumbnail' );
+		} else {
+			$image = '<img src="' . get_stylesheet_directory_uri() . '/images/placeholder.png">';
+		}
+
+		return $image;
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getId() {
