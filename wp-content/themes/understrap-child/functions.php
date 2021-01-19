@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /* Includes */
 require_once( trailingslashit( get_stylesheet_directory() ). '/inc/class-init.php' );
+require_once( trailingslashit( get_stylesheet_directory() ). '/inc/class-realty.php' );
 
 function understrap_remove_scripts() {
     wp_dequeue_style( 'understrap-styles' );
