@@ -1,9 +1,11 @@
 <?php
+namespace TZ\Realty;
+
 /**
  * Class TZ_Init
  * Theme setup and initialisation
  */
-class TZ_Init {
+class Init {
 
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_post_type_realty' ] );
@@ -139,4 +141,4 @@ class TZ_Init {
 
 }
 
-new TZ_Init();
+new Init();

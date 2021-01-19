@@ -1,4 +1,6 @@
 <?php
+namespace TZ\Realty;
+
 /**
  * Single realty post partial template.
  *
@@ -30,23 +32,10 @@ defined( 'ABSPATH' ) || exit;
 		<?php the_content(); ?>
 
 		<?php
-		$cost        = get_field( 'cost' );
-		$area        = get_field( 'area' );
-		$livingArea  = get_field( 'living_are' );
-		$floor       = get_field( 'floor' );
-		$city        = get_field( 'city' );
-		$address     = get_field( 'address' );
-		$images      = [];
-		$countImages = 6;
-		for ( $i = 1; $countImages > $i; $i ++ ) {
-			$image = get_field( 'image_' . $i );
-			if ( $image ) {
-				array_push( $images, $image );
-			}
-		}
+		$realty = new Realty( get_the_ID() );
 
-		if ( $images ) {
-			foreach ( $images as $image ) {
+		if ( $realty->getImagesIds() && is_array( $realty->getImagesIds() ) ) {
+			foreach ( $realty->getImagesIds() as $image ) {
 				printf( '<a data-fancybox="gallery" href="%s">%s</a>',
 					wp_get_attachment_image_url( $image, 'large' ),
 					wp_get_attachment_image( $image, 'thumbnail' )
@@ -54,26 +43,26 @@ defined( 'ABSPATH' ) || exit;
 			}
 		}
 
-		if ( $cost ) {
-			echo '<h6>Cost: ' . $cost . '$</h6>';
+		if ( $realty->getCost() ) {
+			echo '<h6>' . __( 'Cost', 'understrap-child' ) . ': ' . $realty->getCost() . '$</h6>';
 		}
-		if ( $area ) {
-			echo '<h6>Area: ' . $area . 'm²</h6>';
+		if ( $realty->getArea() ) {
+			echo '<h6>' . __( 'Area', 'understrap-child' ) . ': ' . $realty->getArea() . 'm²</h6>';
 		}
-		if ( $livingArea ) {
-			echo '<h6>Living Area: ' . $livingArea . 'm²</h6>';
+		if ( $realty->getLivingArea() ) {
+			echo '<h6>' . __( 'Living Area', 'understrap-child' ) . ': ' . $realty->getLivingArea() . 'm²</h6>';
 		}
-		if ( $floor ) {
-			echo '<h6>Floor: ' . $floor . '</h6>';
+		if ( $realty->getFloor() ) {
+			echo '<h6>' . __( 'Floor', 'understrap-child' ) . ': ' . $realty->getFloor() . '</h6>';
 		}
-		if ( $city ) {
-		    printf( '<h6>City: <a href="%s" target="_blank">%s</a></h6>',
-			    get_permalink( $city ),
-			    $city->post_title
-            );
+		if ( $realty->getCity() ) {
+			printf( '<h6>' . __( 'City', 'understrap-child' ) . ': <a href="%s" target="_blank">%s</a></h6>',
+				get_permalink( $realty->getCity() ),
+				get_the_title( $realty->getCity() )
+			);
 		}
-		if ( $address ) {
-			echo '<h6>Address: ' . $address . '</h6>';
+		if ( $realty->getAddress() ) {
+			echo '<h6>' . __( 'Address', 'understrap-child' ) . ': ' . $realty->getAddress() . '</h6>';
 		}
 		?>
 
