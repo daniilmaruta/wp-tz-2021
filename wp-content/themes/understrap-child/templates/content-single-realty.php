@@ -43,27 +43,7 @@ defined( 'ABSPATH' ) || exit;
 			}
 		}
 
-		if ( $realty->getCost() ) {
-			echo '<h6>' . __( 'Cost', 'understrap-child' ) . ': ' . $realty->getCost() . '$</h6>';
-		}
-		if ( $realty->getArea() ) {
-			echo '<h6>' . __( 'Area', 'understrap-child' ) . ': ' . $realty->getArea() . 'm²</h6>';
-		}
-		if ( $realty->getLivingArea() ) {
-			echo '<h6>' . __( 'Living Area', 'understrap-child' ) . ': ' . $realty->getLivingArea() . 'm²</h6>';
-		}
-		if ( $realty->getFloor() ) {
-			echo '<h6>' . __( 'Floor', 'understrap-child' ) . ': ' . $realty->getFloor() . '</h6>';
-		}
-		if ( $realty->getCity() ) {
-			printf( '<h6>' . __( 'City', 'understrap-child' ) . ': <a href="%s" target="_blank">%s</a></h6>',
-				get_permalink( $realty->getCity() ),
-				get_the_title( $realty->getCity() )
-			);
-		}
-		if ( $realty->getAddress() ) {
-			echo '<h6>' . __( 'Address', 'understrap-child' ) . ': ' . $realty->getAddress() . '</h6>';
-		}
+		echo $realty->getDescription();
 		?>
 
 	</div><!-- .entry-content -->
