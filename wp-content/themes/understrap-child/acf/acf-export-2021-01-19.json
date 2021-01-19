@@ -1,5 +1,50 @@
 [
     {
+        "key": "group_60070caa149a2",
+        "title": "Realty City",
+        "fields": [
+            {
+                "key": "field_60070caa1beba",
+                "label": "City",
+                "name": "city",
+                "type": "post_object",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "city"
+                ],
+                "taxonomy": [],
+                "allow_null": 0,
+                "multiple": 0,
+                "return_format": "object",
+                "ui": 1
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "realty"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "side",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    },
+    {
         "key": "group_60047f739e8fb",
         "title": "Realty Settings",
         "fields": [
@@ -102,28 +147,6 @@
                 "min": "",
                 "max": "",
                 "step": ""
-            },
-            {
-                "key": "field_60047f73a2d5c",
-                "label": "City",
-                "name": "city",
-                "type": "post_object",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "city"
-                ],
-                "taxonomy": [],
-                "allow_null": 0,
-                "multiple": 0,
-                "return_format": "object",
-                "ui": 1
             },
             {
                 "key": "field_60047f73a2d68",
