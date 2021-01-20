@@ -98,10 +98,56 @@ class Realty {
 	}
 
 	/**
+	 * Returns first image or default image
+	 * @return string
+	 */
+	public function getFeaturedImage() {
+		if ( $this->imagesIds && count( $this->imagesIds ) ) {
+			$imageId = array_pop( $this->imagesIds );
+			$image = wp_get_attachment_image( $imageId, 'thumbnail' );
+		} else {
+			$image = '<img src="' . get_stylesheet_directory_uri() . '/images/placeholder.png">';
+		}
+
+		return $image;
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getId() {
 		return $this->id;
+	}
+
+	/**
+	 * Return Realry description
+	 * @return false|string
+	 */
+	public function getDescription() {
+		ob_start();
+		if ( $this->getCost() ) {
+			echo '<h6>' . __( 'Cost', 'understrap-child' ) . ': ' . $this->getCost() . '$</h6>';
+		}
+		if ( $this->getArea() ) {
+			echo '<h6>' . __( 'Area', 'understrap-child' ) . ': ' . $this->getArea() . 'm²</h6>';
+		}
+		if ( $this->getLivingArea() ) {
+			echo '<h6>' . __( 'Living Area', 'understrap-child' ) . ': ' . $this->getLivingArea() . 'm²</h6>';
+		}
+		if ( $this->getFloor() ) {
+			echo '<h6>' . __( 'Floor', 'understrap-child' ) . ': ' . $this->getFloor() . '</h6>';
+		}
+		if ( $this->getCity() ) {
+			printf( '<h6>' . __( 'City', 'understrap-child' ) . ': <a href="%s" target="_blank">%s</a></h6>',
+				get_permalink( $this->getCity() ),
+				get_the_title( $this->getCity() )
+			);
+		}
+		if ( $this->getAddress() ) {
+			echo '<h6>' . __( 'Address', 'understrap-child' ) . ': ' . $this->getAddress() . '</h6>';
+		}
+		
+		return ob_get_clean();
 	}
 
 }
